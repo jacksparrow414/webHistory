@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax基本使用</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <header>此页面介绍ajax的基本使用</header>
+</div>
+<div>
+    <p>
+        在JavaScript中，要想和服务器进行通信-发起HTTP请求，则可以通过window.location或者form表单标签的action和submit就进行相结合的方式，
+        上述内容来自JavaScript权威指南。在这种情况下，一次请求之后，就要对整个页面进行一次刷新
+    </p>
+    <p>
+        而浏览器提供的XMLRequest彻底解决了网页和服务器通信的问题，使得网页可以和用户进行互动起来，这一项重要变化使得web发展突飞猛进。
+        <font color="red">注意：XHR是浏览器提供的API，而不是JavaScript这些原生语言提供的</font>，也就是说，JavaScript原生并没有提供多少和
+        服务器端进行通信的东西，真正实现和服务器端通信的是浏览器提供的XHR。XHR彻底让运行在浏览器中的web应用有了和服务器通信的能力，由于这一部分是浏览器完成的，
+        所以web应用的开发者可以不用关系底层的细节，可以真正专注于业务逻辑。<br>
+        并且，有了XHR对象，可以不用刷新整个页面。只更新页面中的一部分。<br>
+        很典型的场景，如果一个页面由头，侧边栏，脚，中间内容组成，一次请求可能只有中间内容发生变化，
+        那么在没有XHR的时候，整个页面都要reload一遍，如果页面比较大，也会浪费服务器的资源，因为每次请求都会从服务器重新加载这几部分。<br>
+        在有了XHR之后，则可以不用重新加载这个页面，归根结底是因为和服务器通信的方式不同，在没有XHR的时候，和服务器进行通信，只能通过打开新页面、发起新请求的方式，而有了XHR则
+        可以在当前页面直接发起请求。
+        <a href="https://www.w3schools.com/xml/ajax_xmlhttprequest_create.asp">关于XHR的定义</a>
+    </p>
+    <p>
+        ajax可以简单理解为对XHR的高级封装，Asynchronous JavaScript And XML,而jQuery是对ajax进行了又一次封装，是的web开发者对于ajax的使用更为便捷。
+        使用格式为：$.ajax({name:value, name:value, ... })，比较值得关注的几个key是<br>
+        <code>
+            async:false,<br>
+            url:域名 + 请求路径,<br>
+            type:"post",请求类型，是post、get<br>
+            contentType:"application/json;charset=utf-8",<br>
+            data:请求数据，一般为json，通过JSON.stringify(jsonStr)格式化为json<br>
+            dataType:"json"，期待服务器返回的类型，有json、text、xml、script<br>
+            success:function(result,status,xhr) {
+               JSON.parse(result);
+            },<br>
+            error:function(xhr,status,error) {
+            console.log(xhr.responseText);
+            }<br>
+        </code><br>
+        关于ajax的详细介绍<a href="https://www.w3schools.com/jquery/ajax_ajax.asp">参考这里，写的很清楚</a>
+    </p>
+</div>
+<div>
+    <button type="button" onclick="toIndex()" >点我返回首页</button>
+    <form id="ajaxForm" action="#" method="post">
+        名字：<input id="username" type="text" name="username"><br>
+        提交之后的名字：<input id="returnname" type="text" name="returnname"><br>
+        <button type="button" name="button" onclick="submitUser()">点我提交并返回字符串</button>
+        <button type="button" name="button" onclick="submitUserReturnJson()">点我提交并返回json</button>
+    </form>
+</div>
+<script>
+    function toIndex(){
+      window.location.href="index.html"
+    }
+    function submitUser() {
+    var opt = {"username":$("#username").val()}
+        $.ajax({
+          async:false,
+          url:"http://localhost:8888/user/submit",
+          type:"POST",
+          contentType:"application/json;charset=utf-8",
+          data: JSON.stringify(opt),
+          dataType:"text",
+          success:function(result,status,xhr) {
+             alert(result);
+             console.log(status);
+             console.log(xhr.responseText);
+             // 清空表单
+             $("#ajaxForm")[0].reset();
+          },
+          error:function(xhr,status,error) {
+             console.log(xhr.responseText);
+             console.log(xhr.status);
+             console.log(xhr.readyState);
+          }
+        })
+    }
+
+    function submitUserReturnJson() {
+    var opt = {"username":$("#username").val()}
+        $.ajax({
+          async:false,
+          url:"http://localhost:8888/user/submitAndReturnJson",
+          type:"POST",
+          contentType:"application/json;charset=utf-8",
+          data: JSON.stringify(opt),
+          dataType:"json",
+          success:function(result,status,xhr) {
+             console.log(status);
+             console.log(xhr.responseText);
+             // 清空表单
+             $("#ajaxForm")[0].reset();
+             // 对于返回的是json直接使用result访问其具体属性即可
+             $("#returnname").val(result.username);
+          },
+          error:function(xhr,status,error) {
+             console.log(xhr.responseText);
+             console.log(xhr.status);
+             console.log(xhr.readyState);
+          }
+        })
+    }
+</script>
+</body>
+</html>

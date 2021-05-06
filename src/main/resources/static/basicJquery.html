@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery基本使用</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<div>
+jquery是JavaScript的一个类库，提供了一些便捷的、好用的函数与写法，在原生JavaScript中，
+    选择器的写法需要写成document.getElementById("").具体属性,有了jQuery可以直接用$即可，上述方法写成$("selector").action()
+    <p>
+        也就是选择器和在选择器上的事件。<a href="https://www.w3school.com.cn/jquery/jquery_selectors.asp">选择器和具体事件的文档</a>
+    </p>
+</div>
+<div>
+    <button id="toIndex" type="button">点我返回首页</button>
+</div>
+<script>`
+    $(document).ready(function(){
+    console.log("ready event")
+    });
+
+    $("#toIndex").click(function(){
+    window.location.href="index.html"
+    });
+
+    // 设置选择器的css样式 https://www.w3school.com.cn/jquery/jquery_css.asp
+    $("div").css({"background-color":"yellow","font-size":"100%"})
+</script>
+</body>
+</html>

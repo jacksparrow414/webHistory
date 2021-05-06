@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本静态页面html和CSS和JavaScript结合</title>
+    <style>
+        .css {text-align:left;}
+        /*对div元素的id为basic的部分颜色设置为绿色*/
+        div#basic {color:green}
+    </style>
+</head>
+<body>
+<div id="basic">
+    <p>这是基本静态页面，web发展初期，静态页面可以展示一些<b style="color:blue">固定的内容</b>，单纯的HTML页面，什么也没有，HTML全称为HyperText Markup Language,超文本标记语言
+    </p>
+    <p class="css">
+        单独的文字、表格太过于枯燥，
+        那么就出现了CSS，CSS起到了对页面修饰的作用，让原本死气沉沉的页面变得好看、赏心悦目、充满活力起来，也为网页吸引来更多的
+        用户。<br>
+        CSS全称<font color="red">Cascading Style Sheet</font>，中文译为层叠样式表，css的使用在&lt;style&gt;标签里,
+        style标签不会像&lt;script&lt;一样，放在body标签中，它是放在head标签中，
+        css的核心操作为<font color="red">选择器 {属性1:值1;属性2:值2}</font>，<a href="https://www.runoob.com/css/css-syntax.html">基本文档</a>
+        最主要的选择器主要是两个，一个是id，利用#id进行设置；一个是class,利用.class进行设置,<a href="https://www.runoob.com/cssref/css-selectors.html">更多CSS选择器的使用</a>
+    </p>
+    <p id="script">
+        CSS为单调的网页添加了各种各样的样式，甚至可以添加一些动画。到这里，这些网页的功能只是展示、供人看。
+        试想一下，在web初期，面对各种加了CSS的页面，一开始人们的兴趣特别浓烈，因为没见过。但是经过一段时间发展之后，面对各种各样的HTML+CSS页面，会产生疲劳感。
+        如何让用户看网页的时候不疲劳？在于网页需要和用户产生一定的互动<br>
+        javascript负责的就是这个，如果说CSS的动画能够让网页动起来一部分，那么Javascript则是完全<font color="red">让用户和网页都动起来,这里的动我更认为是二者之间产生互动</font>，
+        例如，<button id="button" type="button" onclick="changeText()">点击这个按钮能够改变文字内容</button>，
+        通过JavaScript和HTML的DOM的结合，使得通过JavaScript可以对DOM进行相应或者改变，使得网页和用户的互动率大大提高；
+        这样一来，就大大增加了用户对于网页的<b>留存率</b>。关于JavaScript和HTML的DOM的相关知识可以参考<a href="https://www.runoob.com/js/js-htmldom-events.html">相关文档</a>和<a href="https://www.runoob.com/jsref/dom-obj-document.html">DOM的相关属性和方法</a>
+    </p>
+    <p>
+        最后说一下HTML、CSS、JavaScript三者之间的关系和联系，从上述之中可以看到，一个网页最基础的地基是HTML，它定义了一个网页该有哪些元素组成，是段落、还是表格，还是标题等等。CSS是使得网页更好看、漂亮
+        ，而JavaScript使得网页能够【动-和用户产生互动】起来。举一个形象的例子，如果把网页当做一个玩偶，HTML定义了这个玩偶该有什么零件，头、四肢等。CSS则是为这个玩偶人体模型化了妆，创了衣服等等。而JavaScript则可以让这个玩偶和用户产生有趣的互动，而不是仅仅被用来看
+        借用网上的话来说就是：<br>
+        <ul>
+          <li>HTML provides the basic structure of sites, which is enhanced and modified by other technologies like CSS and JavaScript.</li>
+          <li>CSS is used to control presentation, formatting, and layout.</li>
+          <li>JavaScript is used to control the behavior of different elements</li>
+        </ul>
+    <a href="https://blog.hubspot.com/marketing/web-design-html-css-javascript">google关于三者的文章</a>
+</div>
+<div>
+    <a href="https://html-css-js.com/">关于HTML、CSS、JavaScript之间的关联及其作用</a>
+</div>
+<div>
+    <button type="button" onclick="toIndex()">点我返回首页</button>
+</div>
+<script>
+function toIndex() {
+ window.location.href="index.html"
+}
+/*
+ 利用JavaScript和HTML的DOM来使用户和网页产生互动
+*/
+function changeText() {
+document.getElementById("button").innerText='内容改变了';
+}
+</script>
+</body>
+</html>

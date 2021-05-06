@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<div>
+    <header>这是首页</header>
+</div>
+<div>
+    <button type="button" onclick="consolePrint()">控制台输出点我</button>
+    <button type="button" onclick="toBasicStatic()">跳转到静态页面基本使用点我</button>
+    <button type="button" onclick="toBasicJquery()">跳转到jquery基本使用点我</button>
+    <button type="button" onclick="toBasicAjax()">跳转到ajax基本使用点我</button>
+    <button type="button" onclick="toBasicVue()">跳转到vue基本使用点我</button>
+</div>
+<div>
+    <footer>这是footer</footer>
+</div>
+
+<script>
+    function consolePrint() {
+       console.log("kkk");
+    }
+    function toBasicAjax() {
+    window.location.href="basicAjax.html"
+    }
+    function toBasicStatic() {
+    window.location.href="basicStatic.html"
+    }
+    function toBasicJquery() {
+    window.location.href="basicJquery.html"
+    }
+    function toBasicVue() {
+    window.location.href="basicVue.html"
+    }
+</script>
+</body>
+</html>
